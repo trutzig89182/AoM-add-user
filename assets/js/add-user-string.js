@@ -67,8 +67,11 @@ function createNewUserEntry() {
     newUser.verification = ""
   }
   if (document.getElementById("update").checked !== null) {
-    newUser.update = document.getElementById("update").checked
+    newUser.update = true
+  } else {
+    newUser.update = false
   }
+
 
   //const user_csv_string = newUser.account + "," + newUser.name + "," + newUser.url + "," + newUser.keywords + "," + newUser.language
 
@@ -78,6 +81,11 @@ function createNewUserEntry() {
 // function for inputting csv strung on page
 function printUserEntry() {
   const newUser = createNewUserEntry()
+  if (newUser.update == true) {
+    const is_update = "UPDATE USER:"
+  } else {
+    const is_update = "NEW USER:"
+  }
   const user_csv_string = newUser.account + "," + newUser.name + "," + newUser.url + "," + newUser.keywords + "," + newUser.language
   console.log(user_csv_string)
   const container = document.createElement('p')
