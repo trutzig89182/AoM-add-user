@@ -66,8 +66,8 @@ function createNewUserEntry() {
   } else {
     newUser.verification = ""
   }
-  if (document.getElementById("update").value !== null) {
-    newUser.update = document.getElementById("update").value
+  if (document.getElementById("update").checked !== null) {
+    newUser.update = document.getElementById("update").checked
   }
 
   //const user_csv_string = newUser.account + "," + newUser.name + "," + newUser.url + "," + newUser.keywords + "," + newUser.language
