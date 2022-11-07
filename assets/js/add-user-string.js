@@ -67,9 +67,8 @@ function createNewUserEntry() {
     newUser.verification = ""
   }
   if (document.getElementById("update").checked !== null) {
-    newUser.update = true
-  } else {
-    newUser.update = false
+    newUser.update = document.getElementById("update")
+    console.log(newUser.update.checked)
   }
 
 
@@ -81,15 +80,18 @@ function createNewUserEntry() {
 // function for inputting csv strung on page
 function printUserEntry() {
   const newUser = createNewUserEntry()
-  if (newUser.update == true) {
-    const is_update = "UPDATE USER:"
+  let is_update = ""
+  if (newUser.update.checked == true) {
+    is_update = "UPDATE USER:"
   } else {
-    const is_update = "NEW USER:"
+    is_update = "NEW USER:"
   }
   const user_csv_string = newUser.account + "," + newUser.name + "," + newUser.url + "," + newUser.keywords + "," + newUser.language
   console.log(user_csv_string)
   const container = document.createElement('p')
   container.setAttribute("id", "created_user_entry")
+  container.appendChild(document.createTextNode(is_update))
+  container.appendChild(document.createElement("br"))
   container.appendChild(document.createTextNode(user_csv_string))
   container.appendChild(document.createElement("br"))
   container.appendChild(document.createTextNode("Verfication link: " + newUser.verification))
@@ -100,19 +102,20 @@ function printUserEntry() {
 // function for opening email window and inputting csv string
 function sendUserEntry() {
   const newUser = createNewUserEntry()
-  if (newUser.update.checked) {
-    const is_update = "UPDATE DATA"
+  let is_update = ""
+  if (newUser.update.checked == true) {
+    is_update = "UPDATE USER:"
   } else {
-    const is_update = "NEW USER"
+    is_update = "NEW USER:"
   }
+
   const user_csv_string = newUser.account + "," + newUser.name + "," + newUser.url + "," + newUser.keywords + "," + newUser.language
   const email_adress = document.getElementById("mail_contact").innerText
-  console.log(email_adress)
   const email_subject = encodeURIComponent(document.getElementById("mail_subject").innerText)
   const email_body = encodeURIComponent("(Add your message here)\n\n\n--–" + is_update + "–––\nUser info: " + user_csv_string + "\nVerification link: " + newUser.verification)
   const sendurl = "mailto:" + email_adress
     + "?subject=" + email_subject
-    + "&body=" + email-body
+    + "&body=" + email_body
   window.location = sendurl
 
 }
