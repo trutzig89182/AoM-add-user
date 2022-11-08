@@ -21,22 +21,21 @@ function createNewUserEntry() {
   // make keyword string out of keyword inputs, keywords bound together by "_" seperated by " "
   var keywordstring = ""
   if (document.getElementById("keyword1").value !== null) {
-    const keyword1 = document.getElementById("keyword1").value.trim().replaceAll(" ", "_")
+    const keyword1 = document.getElementById("keyword1").value.trim().replaceAll("#", "").replaceAll(" ", "_")
     keywordstring = keywordstring.concat(keyword1 + " ")
     console.log(keywordstring)
   }
   if (document.getElementById("keyword2").value !== null) {
-    const keyword2 = document.getElementById("keyword2").value.trim().replaceAll(" ", "_")
+    const keyword2 = document.getElementById("keyword2").value.trim().replaceAll("#", "").replaceAll(" ", "_")
     keywordstring = keywordstring.concat(keyword2 + " ")
     console.log(keywordstring)
   }
   if (document.getElementById("keyword3").value !== null) {
-    const keyword3 = document.getElementById("keyword3").value.trim().replaceAll(" ", "_")
+    const keyword3 = document.getElementById("keyword3").value.trim().replaceAll("#", "").replaceAll(" ", "_")
     keywordstring = keywordstring.concat(keyword3)
-    console.log(keywordstring)
   }
-  const keywords = keywordstring
-  console.log(keywords)
+  //double check to avoid "  " if keywords are empty
+  const keywords = keywordstring.trim()
 
   // create Object for new user with all inputs
   const newUser = new Object();
@@ -86,7 +85,7 @@ function printUserEntry() {
   } else {
     is_update = "NEW USER:"
   }
-  const user_csv_string = newUser.account + "," + newUser.name + "," + newUser.url + "," + newUser.keywords + "," + newUser.language
+  const user_csv_string = newUser.account.trim() + "," + newUser.name.trim() + "," + newUser.url.trim() + "," + newUser.keywords.trim() + "," + newUser.language.trim()
   console.log(user_csv_string)
   const container = document.createElement('p')
   container.setAttribute("id", "created_user_entry")
