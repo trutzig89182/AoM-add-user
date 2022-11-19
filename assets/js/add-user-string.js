@@ -21,17 +21,17 @@ function createNewUserEntry() {
   // make keyword string out of keyword inputs, keywords bound together by "_" seperated by " "
   var keywordstring = ""
   if (document.getElementById("keyword1").value !== null) {
-    const keyword1 = document.getElementById("keyword1").value.trim().replaceAll("#", "").replaceAll(" ", "_")
+    const keyword1 = document.getElementById("keyword1").value.trim().replaceAll(",", "").replaceAll("#", "").replaceAll(" ", "_")
     keywordstring = keywordstring.concat(keyword1 + " ")
     console.log(keywordstring)
   }
   if (document.getElementById("keyword2").value !== null) {
-    const keyword2 = document.getElementById("keyword2").value.trim().replaceAll("#", "").replaceAll(" ", "_")
+    const keyword2 = document.getElementById("keyword2").value.trim().replaceAll(",", "").replaceAll("#", "").replaceAll(" ", "_")
     keywordstring = keywordstring.concat(keyword2 + " ")
     console.log(keywordstring)
   }
   if (document.getElementById("keyword3").value !== null) {
-    const keyword3 = document.getElementById("keyword3").value.trim().replaceAll("#", "").replaceAll(" ", "_")
+    const keyword3 = document.getElementById("keyword3").value.trim().replaceAll(",", "").replaceAll("#", "").replaceAll(" ", "_")
     keywordstring = keywordstring.concat(keyword3)
   }
   //double check to avoid "  " if keywords are empty
@@ -85,7 +85,7 @@ function printUserEntry() {
   } else {
     is_update = "NEW USER:"
   }
-  const user_csv_string = newUser.account.trim() + "," + newUser.name.trim() + "," + newUser.url.trim() + "," + newUser.keywords.trim() + "," + newUser.language.trim()
+  const user_csv_string = newUser.account.trim().replaceAll(",", ""). + "," + newUser.name.trim().replaceAll(",", "") + "," + newUser.url.trim().replaceAll(",", "") + "," + newUser.keywords.trim() + "," + newUser.language.trim().replaceAll(",", "")
   console.log(user_csv_string)
   const container = document.createElement('p')
   container.setAttribute("id", "created_user_entry")
