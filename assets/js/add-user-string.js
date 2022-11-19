@@ -35,33 +35,33 @@ function createNewUserEntry() {
     keywordstring = keywordstring.concat(keyword3)
   }
   //double check to avoid "  " if keywords are empty
-  const keywords = keywordstring.trim()
+  const keywords = keywordstring.trim().replaceAll(",", "")
 
   // create Object for new user with all inputs
   const newUser = new Object();
   newUser.keywords = keywords
   if (document.getElementById("account").value !== null) {
-    newUser.account = document.getElementById("account").value
+    newUser.account = document.getElementById("account").value.replaceAll(",", "")
   } else {
     newUser.account = ""
   }
   if (document.getElementById("name").value !== null && document.getElementById("name").value.trim() !== "") {
-    newUser.name = document.getElementById("name").value
+    newUser.name = document.getElementById("name").value.replaceAll(",", "")
   } else {
     newUser.name = "–"
   }
   if (document.getElementById("url").value !== null) {
-    newUser.url = document.getElementById("url").value
+    newUser.url = document.getElementById("url").value.replaceAll(",", "")
   } else {
     newUser.url = ""
   }
   if (document.getElementById("language").value !== null) {
-    newUser.language = document.getElementById("language").value
+    newUser.language = document.getElementById("language").value.replaceAll(",", "")
   } else {
     newUser.language = ""
   }
   if (document.getElementById("verification_link").value !== null) {
-    newUser.verification = document.getElementById("verification_link").value
+    newUser.verification = document.getElementById("verification_link").value.replaceAll(",", "")
   } else {
     newUser.verification = ""
   }
@@ -85,7 +85,7 @@ function printUserEntry() {
   } else {
     is_update = "NEW USER:"
   }
-  const user_csv_string = newUser.account.trim().replaceAll(",", ""). + "," + newUser.name.trim().replaceAll(",", "") + "," + newUser.url.trim().replaceAll(",", "") + "," + newUser.keywords.trim() + "," + newUser.language.trim().replaceAll(",", "")
+  const user_csv_string = newUser.account.trim() + "," + newUser.name.trim() + "," + newUser.url.trim() + "," + newUser.keywords.trim() + "," + newUser.language.trim()
   console.log(user_csv_string)
   const container = document.createElement('p')
   container.setAttribute("id", "created_user_entry")
