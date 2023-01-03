@@ -3,3 +3,6 @@
 
 # Build directory
 dist
+
+# IntelliJ Editor data
+.idea
